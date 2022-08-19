@@ -6,11 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <style>
+   html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .bg {
+            animation: slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom: 0;
+            left: -50%;
+            opacity: .5;
+            position: fixed;
+            right: -50%;
+            top: 0;
+            z-index: -1;
+        }
+
+        .bg2 {
+            animation-direction: alternate-reverse;
+            animation-duration: 4s;
+        }
+
+        .bg3 {
+            animation-duration: 5s;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, .8);
+            border-radius: .25em;
+            box-shadow: 0 0 .25em rgba(0, 0, 0, .25);
+            box-sizing: border-box;
+            left: 50%;
+            padding: 10vmin;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-family: monospace;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(25%);
+            }
+        }
+
+
+
+        
     body{
 margin: 0;
 overflow: hidden;
 background: #000;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 .content {
             background-color: rgba(255, 255, 255, .8);
@@ -386,6 +457,102 @@ i:nth-child(40){
     opacity: 0;
   }
 }
+
+
+
+
+
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+}
+.add-btn:hover {
+  width: 120px;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+ 
+  top: calc(50% - 2px);
+
+}
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: red;
+  overflow: hidden;
+}
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 
@@ -444,22 +611,28 @@ i:nth-child(40){
 
             <input type="text" style="width: 130px; margin-left: 1%;" placeholder="Second Number" id="secondnumber"
                 required>
+                <input type="text" style="width: 130px; margin-left: 1%;" placeholder="Third Number" id="thirdnumber"
+                required>
 
         </form>
         <br>
 
 
-        <button onclick="doSum()" class="button-1">+</button>
-        <button onclick="doSub()" class="button-2">-</button>
-        <button onclick="doDi()" class="button-5"> /</button>
-        <button onclick="doMu()" class="button-1">*</button>
-        <button onclick="doPo()" class="button-2">^</button>
-        <button onclick="doMo()" class="button-4">%</button>
-        <button onclick="doMe()" class="button-4">x̄</button>
-        <button onclick="doS()" class="button-1">sin</button>
-        <button onclick="doC()" class="button-5">cos</button>
-        <button onclick="doT()" class="button-2">tan</button>
-        <button onclick="evenodd()" class="button-4">E/O</button>
+        <button onclick="doSum()" class="icon-btn add-btn  ">+</button>
+        <button onclick="doSub()" class="icon-btn add-btn  ">-</button>
+        <button onclick="doDi()" class="icon-btn add-btn   "> /</button>
+   <br>
+        <button onclick="doMu()" class="icon-btn add-btn  ">*</button>
+        <button onclick="doPo()" class="icon-btn add-btn  ">^</button>
+        <button onclick="doMo()" class="icon-btn add-btn  ">%</button>
+        <br>
+        <button onclick="doMe()" class="icon-btn add-btn  ">x̄</button>
+        <button onclick="doS()" class="icon-btn add-btn  ">sin</button>
+        <button onclick="doC()" class="icon-btn add-btn  ">cos</button>
+        <br>
+        <button onclick="doT()" class="icon-btn add-btn  ">tan</button>
+        <button onclick="evenodd()" class="icon-btn add-btn  ">E/O</button>
+        <button onclick="d()" class="icon-btn add-btn  ">Roots</button>
 
 
         <br>
@@ -467,6 +640,25 @@ i:nth-child(40){
         <h1 id="r" style="color:black;"></h1>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script>
         function doSum() {
@@ -559,8 +751,8 @@ i:nth-child(40){
             let firstnumber = Number(document.querySelector('#firstnumber').value)
 
             if (firstnumber % 2 == 0) {
-                let sum = "Even"
-                document.querySelector('#r').innerHTML = sum;
+                let Result = "Even"
+                document.querySelector('#r').innerHTML = Result;
             }
             else {
                 let sum = "Odd"
@@ -569,9 +761,40 @@ i:nth-child(40){
             }
         }
 
+function d(){ 
+
+  let a  = Number(document.querySelector('#firstnumber').value)
+  let b= Number(document.querySelector('#secondnumber').value)
+  let c= Number(document.querySelector('#thirdnumber').value)
+d=Math.sqrt((b**2)-4*a*c)
+
+sum=`The roots of quadratic equation are real and different ${d}`
+  document.querySelector('#r').innerHTML = sum;
 
 
+if(d>0){
+  r1 = (-b + Math.sqrt((b**2)-4*a*c)) / (2 * a);
+  r2 = (-b - Math.sqrt((b**2)-4*a*c)) / (2 * a);
+  sum=`The roots of quadratic equation are real and different ${r1} and ${r2} `
+  document.querySelector('#r').innerHTML = sum;
 
+}
+else if(d==0){
+  r1 = r2 = -b / (2 * a);
+  sum=`The roots of quadratic equation are real and equal ${r1} and ${r2} `
+  document.querySelector('#r').innerHTML = sum;
+}
+else {
+    let realPart = (-b / (2 * a)).toFixed(2);
+    let imagPart = (Math.sqrt(-discriminant) / (2 * a)).toFixed(2);
+
+  sum=`The roots of quadratic equation are not real ${r1} and ${r2}`
+  document.querySelector('#r').innerHTML = sum;
+
+
+}
+
+}
 
 
     </script>
